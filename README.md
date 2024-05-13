@@ -1,0 +1,29 @@
+# DEEP LEARNING
+
+- __Lecture 1__:
+    - Execise 1
+    - Execise 2
+    - Execise 3
+    - Execise 4
+    - Execise 5
+    - Execise 6
+    - Execise 7
+- __Lecture 2__:
+    - Execise 1
+    - Execise 2
+    - Execise 3
+    - Execise 4
+    - Execise 5
+    - Execise 6
+    - Execise 7
+    - Execise 8
+- __Lecture 3__:
+    - Execise 1
+    - Execise 2
+    - Execise 3
+- __Lecture 4__:
+    - Execise 1
+    - Execise 2
+- __Lecture 5__:
+    - Execise 1
+    - Execise 2
