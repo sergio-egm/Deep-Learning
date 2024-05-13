@@ -20,9 +20,9 @@ class Polynomial:
     def __call__(self,x):
         return self._execute(x)
     
-    @property
+    #@property
     # Valori ch possono essere visualizzati ma non modificati
-    @param.setter
+    #@param.setter
     # posso definire un modo per modificare i valori
 
 if __name__=="__main__":
