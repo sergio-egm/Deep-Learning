@@ -17,9 +17,9 @@
     - Execise 7 - DONE
     - Execise 8 - DONE
 - __Lecture 3__:
-    - Execise 1
-    - Execise 2
-    - Execise 3
+    - Execise 1 - DONE
+    - Execise 2 - DONE
+    - Execise 3 - ON GOING
 - __Lecture 4__:
     - Execise 1
     - Execise 2

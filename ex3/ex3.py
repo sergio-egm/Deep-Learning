@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 
 tf.random.set_seed(0)
 
+#Data generation
 def f(x):
     return x*3.0+2.0
 
@@ -12,9 +13,22 @@ def generate_data():
     x=tf.linspace(-2,2,200)
     x=tf.cast(x,tf.float32)
     noise=tf.random.normal(shape=x.shape)
-    y=f(x)+noise 
+    y=f(x)+noise
+
+    plt.figure()
+    plt.grid()
+    plt.scatter(x , y , color = 'blue' , label = 'Data')
+    plt.plot(x , f(x) , color = 'red'  , label = 'Ground model')
+
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.title('Data generation')
+
+
     return x,y 
 
+
+#Linear fit
 class MyModel(tf.Module):
     def __init__(self,**kwargs):
         super().__init__(**kwargs)
@@ -29,6 +43,7 @@ def loss(target_y,predicted_y):
     return tf.reduce_mean(tf.square(target_y-predicted_y))
 
 
+#Training Loop
 def report(model,loss):
     return f"W = {model.w.numpy():1.2f}, b = {model.b.numpy():1.2f}, loss = {loss:2.5f}"
 
@@ -64,8 +79,25 @@ ypred=model(x)
 current_loss=loss(y,model(x))
 
 print("Untrained model loss: %1.6f" % current_loss.numpy())
+plt.scatter(x , ypred , color = 'green' , label = 'Initial predictions (TF)' , s=2)
 print("Starting...")
 print('\t',report(model,current_loss))
 epochs=range(10)
 weights,baias=trainig_loop(model,x,y,epochs)
 print("Trained loss %1.6f" % loss(model(x),y).numpy())
+
+plt.scatter(x , model(x) , color = 'orange' , label = 'Final predictions (TF)' , s=2)
+
+
+
+
+#Keras
+model=tf.keras.Sequential()
+model.add(tf.keras.layers.Dense(1 , activation = 'linear' , input_dim = 1))
+
+plt.scatter(x , model.predict(x) , color = 'magenta' , label = 'Initil predictions (KERAS)' , s=2)
+
+model.train
+
+plt.legend()
+plt.show()
