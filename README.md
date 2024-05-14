@@ -8,14 +8,14 @@
     - Execise 6 - DONE
     - Execise 7 - DONE
 - __Lecture 2__:
-    - Execise 1
-    - Execise 2
-    - Execise 3
-    - Execise 4
-    - Execise 5
-    - Execise 6
-    - Execise 7
-    - Execise 8
+    - Execise 1 - DONE
+    - Execise 2 - DONE
+    - Execise 3 - DONE
+    - Execise 4 - DONE
+    - Execise 5 - DONE
+    - Execise 6 - DONE
+    - Execise 7 - DONE
+    - Execise 8 - DONE
 - __Lecture 3__:
     - Execise 1
     - Execise 2
