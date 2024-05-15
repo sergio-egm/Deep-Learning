@@ -21,8 +21,8 @@
     - Execise 2 - DONE
     - Execise 3 - DONE
 - __Lecture 4__:
-    - Execise 1
-    - Execise 2
+    - Execise 1 - DONE
+    - Execise 2 - ON GOING
 - __Lecture 5__:
-    - Execise 1
-    - Execise 2
+    - Execise 1 - ON GOING
+    - Execise 2 - NOT START
