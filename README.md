@@ -19,7 +19,7 @@
 - __Lecture 3__:
     - Execise 1 - DONE
     - Execise 2 - DONE
-    - Execise 3 - ON GOING
+    - Execise 3 - DONE
 - __Lecture 4__:
     - Execise 1
     - Execise 2

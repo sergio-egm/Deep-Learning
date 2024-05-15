@@ -22,7 +22,7 @@ def generate_data():
 
     plt.xlabel('x')
     plt.ylabel('y')
-    plt.title('Data generation')
+    plt.title('Data Visualization - TENSORFLOW')
 
 
     return x,y 
@@ -87,17 +87,53 @@ weights,baias=trainig_loop(model,x,y,epochs)
 print("Trained loss %1.6f" % loss(model(x),y).numpy())
 
 plt.scatter(x , model(x) , color = 'orange' , label = 'Final predictions (TF)' , s=2)
-
+plt.legend()
 
 
 
 #Keras
-model=tf.keras.Sequential()
-model.add(tf.keras.layers.Dense(1 , activation = 'linear' , input_dim = 1))
+class MyKeras(tf.keras.Model):
+    def __init__(self , **kwargs):
+        super().__init__(**kwargs)
+        self.w = tf.Variable(5.0)
+        self.b = tf.Variable(0.0)
+    
 
-plt.scatter(x , model.predict(x) , color = 'magenta' , label = 'Initil predictions (KERAS)' , s=2)
+    def __call__(self , x , training=False):
+        return self.w * x + self.b
 
-model.train
+model_keras = MyKeras()
+
+plt.figure()
+plt.grid()
+plt.title('Data Visualization - KERAS')
+plt.xlabel('x')
+plt.ylabel('y')
+
+plt.scatter(x , y ,
+            color = 'blue' ,
+            label = 'Data')
+plt.plot(x , f( x ) ,
+         color = 'red' ,
+         label = 'Ground model')
+
+
+plt.scatter(x , model_keras(x) ,
+            color = 'magenta' ,
+            s = 2 ,
+            label = 'Initial predictions (KERAS)')
+
+
+model_keras.compile(optimizer = tf.keras.optimizers.SGD(learning_rate = 0.1) ,
+                    loss = tf.keras.losses.mean_squared_error)
+
+model_keras.fit(x , y ,
+                epochs = 10 ,
+                batch_size = len(x))
+
+plt.scatter(x , model_keras(x),
+            label = 'Final predictions (KERAS)' ,
+            s = 2 , color = 'lime')
 
 plt.legend()
 plt.show()
