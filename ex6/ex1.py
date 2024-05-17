@@ -22,7 +22,7 @@ df.drop(['label'] , axis = 1 , inplace = True)
 print(df)
 
 train_dataset = df.sample(frac = 0.8 , random_state = 1)
-#test_dataset = df.drop(train_dataset.columns)  #Chack it again
+test_dataset = df.drop(train_dataset.index)
 
 X_train = train_dataset[['sepal length (cm)' , 'sepal width (cm)' , 'petal length (cm)' , 'petal width (cm)']]
 y_train = train_dataset[['label_setosa' , 'label_versicolor' , 'label_virginica']]
@@ -63,5 +63,6 @@ plt.plot(epochs , val_metrics   , label = 'validation loss')
 plt.xlabel('epochs')
 plt.ylabel('loss')
 plt.title('Training and validation loss')
+plt.legend()
 
 plt.show()
