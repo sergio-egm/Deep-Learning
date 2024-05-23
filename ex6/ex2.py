@@ -15,7 +15,7 @@ model.add(tf.keras.layers.LSTM(30 , activation = 'relu' , input_shape = (train_d
 model.add(tf.keras.layers.Dense(1))
 
 model.compile(optimizer = 'adam' , loss = 'mse')
-history = model.fit(train_data , train_label , epochs = 25 , batch_size = 32)  #Not working merged two comands
+history = model.fit(train_data , train_label , epochs = 25 , batch_size = 32)
 
 train_predict = model.predict(test_data)
 
@@ -44,5 +44,23 @@ plt.legend()
 plt.xlabel('day')
 plt.ylabel('temperature')
 plt.title('Predicted data (first 100 days)')
+
+
+plt.subplot(3 , 2 , 5)
+plt.plot(test_label-train_predict , color = 'k')
+plt.ylabel('Residual')
+plt.xlabel('Day')
+plt.title('Residual plot')
+
+plt.subplot(3 , 2 , 6)
+plt.scatter(train_predict , test_label , s = 2 , color = 'black')
+plt.ylabel('True data')
+plt.xlabel('Predicted Data')
+plt.title('Scatter plot')
+
+mse = np.mean( np.square(train_predict-test_label) )
+print(f"MSE = {mse}")
+
+plt.subplots_adjust(hspace = 0.5 , wspace = 0.3)
 
 plt.show()
