@@ -31,3 +31,6 @@ These codes are exercise and not optimized too much, the focus is to understand 
 - __Lecture 6__:
     - Exercise 1 - DONE
     - Exercise 2 - DONE
+- __Lecture 7__:
+    - Exercise 1 - DONE
+    - Exercise 2 - NOT START
