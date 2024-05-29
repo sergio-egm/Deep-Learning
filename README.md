@@ -36,4 +36,4 @@ These codes are exercise and not optimized too much, the focus is to understand 
     - Exercise 2 - ON GOING
 - __Lecture 8__:
     - Exercise 1 - DONE
-    - Exercise 2 - NOT START
+    - Exercise 2 - DONE
