@@ -84,9 +84,9 @@ def plot_samples(ds , box_sample = None):
 def feature_extractor(inputs):
     x = tf.keras.layers.Conv2D(16 , 3 , activation = 'relu')(inputs)
     x = tf.keras.layers.AveragePooling2D((2 , 2))(x)
-    x = tf.keras.layers.Conv2D(32 , 3 , activation = 'relu')(inputs)
+    x = tf.keras.layers.Conv2D(32 , 3 , activation = 'relu')(x)
     x = tf.keras.layers.AveragePooling2D((2 , 2))(x)
-    x = tf.keras.layers.Conv2D(64 , 3 , activation = 'relu')(inputs)
+    x = tf.keras.layers.Conv2D(64 , 3 , activation = 'relu')(x)
     x = tf.keras.layers.AveragePooling2D((2 , 2))(x)
     x = tf.keras.layers.Flatten()(x)
     x = tf.keras.layers.Dense(128 , activation = 'relu')(x)
@@ -109,25 +109,6 @@ def create_model():
     model  = tf.keras.Model(inputs = inputs , outputs = [bounding_box , class_layer])
     return model
 
-def plot_history(history):
-    plt.figure(figsize = (10 , 10))
-
-    plt.subplot(1 , 2 , 1)
-
-    plt.plot(history.history['bounding_box_mse'])
-    plt.xlabel('Epochs')
-    plt.ylabel('MSE')
-    plt.title('Bounding Boxes')
-
-    plt.subplot(1 , 2 , 2)
-
-    plt.plot(history.history['classifier_acc'])
-    plt.xlabel('Epochs')
-    plt.ylabel('Accuracy')
-    plt.title('Classifier')
-
-    plt.subplots_adjust(hspace = .2 , wspace= .5)
-
 
 
 
@@ -135,6 +116,8 @@ def plot_history(history):
 
 
 def main():
+    get_weights = True
+
     training_ds , validation_ds = get_datasets()
     plot_samples(training_ds)
 
@@ -154,16 +137,27 @@ def main():
         }
     )
 
+    if get_weights:
+        model.load_weights('ex2.weights.h5')
+
     history = model.fit(
         training_ds['img'] , (training_ds['box'] , training_ds['lab']) ,
-        #validation_data = (
-        #    validation_ds['img'] , (validation_ds['box'] , validation_ds['lab'])
-        #) ,
+        validation_data = (
+            validation_ds['img'] , (validation_ds['box'] , validation_ds['lab'])
+        ) ,
         epochs = 10
     )
 
-    plot_samples(training_ds , model.evaluate(training_ds['img']))
-    plot_history(history)
+    model.save_weights('ex2.weights.h5')
+    appo = np.append(np.loadtxt('history/bounding_box_mse.hist') , history.history['bounding_box_mse'])
+    np.savetxt('history/bounding_box_mse.hist' , appo)
+    appo = np.append(np.loadtxt('history/classifier_acc.hist') , history.history['classifier_acc'])
+    np.savetxt('history/classifier_acc.hist' , appo)
+    appo = np.append(np.loadtxt('history/val_bounding_box_mse.hist') , history.history['val_bounding_box_mse'])
+    np.savetxt('history/val_bounding_box_mse.hist' , appo)
+    appo = np.append(np.loadtxt('history/val_classifier_acc.hist') , history.history['val_classifier_acc'])
+    np.savetxt('history/val_classifier_acc.hist' , appo)
+    
     plt.show()
 
 
