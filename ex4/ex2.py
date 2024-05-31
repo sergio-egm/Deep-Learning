@@ -18,6 +18,76 @@ def plot_images(data , target , index):
         plt.xticks([])
         plt.yticks([])
         plt.title(data_target[target[appo[i]]])
+    
+    plt.subplots_adjust(hspace = .2 , wspace = .5)
+
+
+
+def create_model():
+    model = tf.keras.models.Sequential()
+
+    model.add(tf.keras.layers.Flatten(input_shape = (28 , 28)))
+    model.add(tf.keras.layers.Dense(128 , activation = 'relu'))
+    model.add(tf.keras.layers.Dense(10  , activation = 'softmax'))
+
+    return model
+
+def plot_history(history):
+    plt.figure(figsize = (10 , 8))
+
+    plt.subplot(1 , 2 ,1)
+
+    plt.plot(history.history['loss']     , label = 'Train')
+    plt.plot(history.history['val_loss'] , label = 'Validation')
+
+    plt.xlabel('Epochs')
+    plt.ylabel('Loss')
+    plt.grid()
+    plt.legend()
+
+    plt.subplot(1 , 2 ,2)
+
+    plt.plot(history.history['accuracy']     , label = 'Train')
+    plt.plot(history.history['val_accuracy'] , label = 'Validation')
+
+    plt.xlabel('Epochs')
+    plt.ylabel('Accuracy')
+    plt.grid()
+    plt.legend()
+
+    plt.subplots_adjust(hspace = .2 , wspace = .5)
+
+
+
+def plot_errors(ds_img , ds_lab , model):
+    plt.figure(figsize = (10 , 10))
+    evaluations = model(ds_img)
+
+    count = 0
+    n     = 0
+
+    while count < 36 :
+        eva = np.argmax(evaluations[n])
+
+        if eva != ds_lab[n] :
+            plt.subplot(6 , 6 , count + 1)
+
+            plt.title(f"{data_target[eva]}\n{data_target[ds_lab[n]]}")
+            plt.imshow(ds_img[n] , cmap = 'binary')
+
+            plt.xticks([])
+            plt.yticks([])
+
+            count += 1
+        
+        n +=1
+        if n == len(ds_img):
+            print(f"{count} images")
+            break
+    
+    plt.subplots_adjust(hspace = .5 , wspace = .5)
+
+
 
     
 
@@ -39,6 +109,23 @@ def main():
                 np.random.randint(low  = 0 ,
                                   high = len(train_data) ,
                                   size = (6,6)))
+    
+    model = create_model()
+
+    model.summary()
+
+    model.compile(
+        optimizer = 'adam' ,
+        loss      = 'sparse_categorical_crossentropy' ,
+        metrics   = ['accuracy']
+    )
+
+    history = model.fit(train_data , train_values ,
+                        validation_data=(test_data , test_values) ,
+                        epochs = 10)
+    
+    plot_history(history)
+    plot_errors(test_data , test_values , model)
 
     plt.show()
 
