@@ -26,8 +26,8 @@ These codes are exercise and not optimized too much, the focus is to understand 
     - Exercise 1 - DONE
     - Exercise 2 - DONE
 - __Lecture 5__:
-    - Exercise 1 - ON GOING
-    - Exercise 2 - NOT START
+    - Exercise 1 - DONE
+    - Exercise 2 - ON GOING
 - __Lecture 6__:
     - Exercise 1 - DONE
     - Exercise 2 - DONE
