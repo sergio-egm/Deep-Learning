@@ -37,3 +37,18 @@ These codes are exercise and not optimized too much, the focus is to understand 
 - __Lecture 8__:
     - Exercise 1 - DONE
     - Exercise 2 - DONE
+
+## Project
+
+Binary classification of mushroom in edible and poisonous, thought the following properities:
+
+1. Cap diameter
+2. Cap shape
+3. Gill attachment
+4. Gill color
+5. Stem height
+6. Stem width
+7. Stem color
+8. Season
+
+Focussing on optimization and evaluation of the model.
