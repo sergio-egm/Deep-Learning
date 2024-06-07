@@ -11,4 +11,4 @@ This project is focused on the binari classification in eadible and poisonous, t
 7. Stem color
 8. Season
 
-Create a __deep neural network__ with 7 layers and study its the general properties of convergence.
+Create a __deep neural network__ with 7 layers and study its the general properties of convergence.  Then I studied the optimization of the choice of: _nodes numbers in the first layer_, _larning rate_.
