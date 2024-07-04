@@ -4,4 +4,6 @@ ex7/data
 
 Project/mushroom_cleaned.csv
 Project/.ipynb_checkpoints
-.virtual_documents/
+*.virtual_documents/
+
+*.png
