@@ -6,4 +6,4 @@ Project/mushroom_cleaned.csv
 Project/.ipynb_checkpoints
 *.virtual_documents/
 
-*.png
+Project/overfit.png
